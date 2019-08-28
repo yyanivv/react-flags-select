@@ -138,7 +138,7 @@ class ReactFlagsSelect extends Component {
 
 		return (
 			<div className={`flag-select ${this.props.className ? this.props.className :  ""}`}>
-				<div ref="selectedFlag" style={{fontSize: `${selectedSize}px`}} className={`selected--flag--option ${this.props.disabled ? 'no--focus' : ''}`} tabIndex="0" onClick={this.toggleOptions} onKeyUp={evt => this.toggleOptionsWithKeyboard(evt)}>
+				<div ref="selectedFlag" style={{fontSize: `${selectedSize}px`}} className={`selected--flag--option ${this.props.disabled ? 'no--focus' : ''}`} tabIndex={this.props.tabIndex} onFocus={()=>this.toggleOptions()} onClick={this.toggleOptions} onKeyUp={evt => this.toggleOptionsWithKeyboard(evt)}>
 					{isSelected &&
 						<span className="country-flag" style={{width: `${selectedSize}px`, height: `${selectedSize}px`}} >
 							<img src={require(`../flags/${isSelected.toLowerCase()}.svg`)} alt={isSelected}/>
