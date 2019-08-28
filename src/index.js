@@ -21,9 +21,9 @@ class ReactFlagsSelect extends Component {
 		this.setCountries = this.setCountries.bind(this);
 	}
 
-	toggleOptions() {
+	toggleOptions(bol) {
 		!this.state.disabled && this.setState({
-			openOptions: !this.state.openOptions
+			openOptions: bol || !this.state.openOptions
 		});
 	}
 
@@ -42,7 +42,7 @@ class ReactFlagsSelect extends Component {
 	}
 
 	closeOptions(event) {
-		if (event.target !== this.refs.selectedFlag && event.target !== this.refs.flagOptions && event.target !== this.refs.filterText || (event.type == "blur" && this.state.openOptions) ) {
+		if (event.target !== this.refs.selectedFlag && event.target !== this.refs.flagOptions && event.target !== this.refs.filterText ) {
 			this.setState({
 				openOptions: false
 			});
@@ -138,7 +138,7 @@ class ReactFlagsSelect extends Component {
 
 		return (
 			<div className={`flag-select ${this.props.className ? this.props.className :  ""}`}>
-				<div ref="selectedFlag" style={{fontSize: `${selectedSize}px`}} className={`selected--flag--option ${this.props.disabled ? 'no--focus' : ''}`} tabIndex={this.props.tabIndex} onBlur={this.closeOptions} onFocus={this.toggleOptions} onKeyUp={evt => this.toggleOptionsWithKeyboard(evt)}>
+				<div ref="selectedFlag" style={{fontSize: `${selectedSize}px`}} className={`selected--flag--option ${this.props.disabled ? 'no--focus' : ''}`} tabIndex={this.props.tabIndex} onFocus={()=>this.toggleOptions(true)} onClick={this.toggleOptions} onKeyUp={evt => this.toggleOptionsWithKeyboard(evt)}>
 					{isSelected &&
 						<span className="country-flag" style={{width: `${selectedSize}px`, height: `${selectedSize}px`}} >
 							<img src={require(`../flags/${isSelected.toLowerCase()}.svg`)} alt={isSelected}/>
