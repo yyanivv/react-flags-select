@@ -168,6 +168,7 @@ export default ({
     "RU": "Russian",
     "RW": "Rwanda",
     "KN": "Saint Kitts and Nevis",
+    "LC": "Saint Lucia",
     "WS": "Samoa",
     "SM": "San Marino",
     "ST": "Sao Tome and Principe",
