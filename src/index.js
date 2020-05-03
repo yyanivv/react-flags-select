@@ -88,7 +88,7 @@ class ReactFlagsSelect extends Component {
 	}
 
 	setCountries() {
-		const fullCountries = Object.keys(countries);
+		const fullCountries = Object.keys(this.props.customList ? this.props.customList : countries);
 
 		let selectCountries = this.props.countries && this.props.countries.filter( country => {
 			return countries[country] ;
@@ -141,7 +141,7 @@ class ReactFlagsSelect extends Component {
 				<div ref="selectedFlag" style={{fontSize: `${selectedSize}px`}} className={`selected--flag--option ${this.props.disabled ? 'no--focus' : ''}`} tabIndex={this.props.tabIndex} onFocus={()=>this.toggleOptions(true)} onClick={this.toggleOptions} onKeyUp={evt => this.toggleOptionsWithKeyboard(evt)}>
 					{isSelected &&
 						<span className="country-flag" style={{width: `${selectedSize}px`, height: `${selectedSize}px`}} >
-							<img src={require(`../flags/${isSelected.toLowerCase()}.svg`)} alt={isSelected}/>
+						{!this.props.customList && <img src={require(`../flags/${isSelected.toLowerCase()}.svg`)} alt={isSelected}/> }
 							{this.props.showSelectedLabel &&
 								<span className="country-label">{ this.props.customLabels[isSelected] || countries[isSelected] }</span>
 							}
@@ -165,9 +165,9 @@ class ReactFlagsSelect extends Component {
 
 							<div className={`flag-option ${this.props.showOptionLabel ? 'has-label' : ''}`} key={countryCode} tabIndex="0" onClick={() => this.onSelect(countryCode)} onKeyUp={evt => this.onSelectWithKeyboard(evt, countryCode)}>
 								<span className="country-flag" style={{width: `${optionsSize}px`, height: `${optionsSize}px`}} >
-									<img src={require(`../flags/${countryCode.toLowerCase()}.svg`)} />
+									{!this.props.customList && <img src={require(`../flags/${countryCode.toLowerCase()}.svg`)} />}
 									{this.props.showOptionLabel &&
-										<span className="country-label">{ this.props.customLabels[countryCode] || countries[countryCode] }</span>
+										<span className="country-label">{ this.props.customList ? this.props.customList[countryCode] : this.props.customLabels[countryCode] || countries[countryCode] }</span>
 									}
 								</span>
 							</div>
@@ -191,9 +191,11 @@ ReactFlagsSelect.defaultProps = {
 	blackList: false,
 	searchable: false,
 	searchPlaceholder: 'Search',
+	customList: false,
 }
 
 ReactFlagsSelect.propTypes = {
+	customList: PropTypes.array,
 	countries: PropTypes.array,
 	blackList: PropTypes.bool,
 	customLabels: PropTypes.object,
