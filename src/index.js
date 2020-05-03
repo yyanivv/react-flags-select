@@ -191,12 +191,10 @@ ReactFlagsSelect.defaultProps = {
 	disabled: false,
 	blackList: false,
 	searchable: false,
-	searchPlaceholder: 'Search',
-	customList: false,
+	searchPlaceholder: 'Search'
 }
 
 ReactFlagsSelect.propTypes = {
-	customList: PropTypes.array,
 	countries: PropTypes.array,
 	blackList: PropTypes.bool,
 	customLabels: PropTypes.object,
