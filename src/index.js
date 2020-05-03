@@ -80,7 +80,7 @@ class ReactFlagsSelect extends Component {
 	filterSearch(evt) {
 		let filterValue = evt.target.value;
 		let filteredCountries = filterValue && this.state.countries.filter(key => {
-			let label = this.props.customLabels[key] || countries[key];
+			let label = this.props.customList ? this.props.customList[key] : this.props.customLabels[key] || countries[key];
 			return  label && label.match(new RegExp(filterValue, 'i'))
 		}) ;
 
@@ -120,7 +120,7 @@ class ReactFlagsSelect extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps.countries !== this.props.countries || prevProps.blackList !== this.props.blackList) {
+		if (prevProps.countries !== this.props.countries || prevProps.customList !== this.props.customList	 || prevProps.blackList !== this.props.blackList) {
 			this.setCountries();
 		}
 	}
@@ -142,8 +142,9 @@ class ReactFlagsSelect extends Component {
 					{isSelected &&
 						<span className="country-flag" style={{width: `${selectedSize}px`, height: `${selectedSize}px`}} >
 						{!this.props.customList && <img src={require(`../flags/${isSelected.toLowerCase()}.svg`)} alt={isSelected}/> }
+							
 							{this.props.showSelectedLabel &&
-								<span className="country-label">{ this.props.customLabels[isSelected] || countries[isSelected] }</span>
+								<span className="country-label">{ this.props.customList ? this.props.customList[isSelected] :this.props.customLabels[isSelected] || countries[isSelected] }</span>
 							}
 						</span>
 					}
