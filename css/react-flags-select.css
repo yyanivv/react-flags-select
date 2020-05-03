@@ -50,6 +50,8 @@
     white-space: nowrap; }
     .flag-select .flag-option.has-label {
       padding: 0px 20px 3px 8px; }
+    .flag-select .flag-option.custom--list {
+      margin: 6px 12px; }
     .flag-select .flag-option:hover {
       background: #eaeaea; }
     .flag-select .flag-option:focus {

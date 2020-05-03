@@ -164,7 +164,7 @@ class ReactFlagsSelect extends Component {
 						}
 						{(this.state.filter ? this.state.filteredCountries : this.state.countries).map( countryCode =>
 
-							<div className={`flag-option ${this.props.showOptionLabel ? 'has-label' : ''}`} key={countryCode} tabIndex="0" onClick={() => this.onSelect(countryCode)} onKeyUp={evt => this.onSelectWithKeyboard(evt, countryCode)}>
+							<div className={`flag-option ${this.props.showOptionLabel ? 'has-label' : ''} ${this.props.customList ? 'custom--list' : '' }`} key={countryCode} tabIndex="0" onClick={() => this.onSelect(countryCode)} onKeyUp={evt => this.onSelectWithKeyboard(evt, countryCode)}>
 								<span className="country-flag" style={{width: `${optionsSize}px`, height: `${optionsSize}px`}} >
 									{!this.props.customList && <img src={require(`../flags/${countryCode.toLowerCase()}.svg`)} />}
 									{this.props.showOptionLabel &&
